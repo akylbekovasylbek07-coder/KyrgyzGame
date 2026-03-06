@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>УЛУУ МУРАС | Санариптик Энциклопедия</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --light-gold: #f9e295;
+            --deep-red: #660000;
+            --black: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--black);
+            color: #eee;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Фондогу анимацияланган оймо */
+        .bg-ornament {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a0505 0%, #050505 100%);
+            z-index: -2;
+        }
+
+        /* Навигация */
+        nav {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid var(--gold);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.8rem; font-weight: 900; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                        url('https://probation.minjust.gov.kg/uploads/cache/58a978eeb4dfc05590921ccdf1ab855a.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+        .hero p { font-size: 1.2rem; letter-spacing: 8px; text-transform: uppercase; opacity: 0.8; }
+
+        /* Контент контейнери */
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 20px; }
+
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); }
+        .gold-divider { width: 150px; height: 3px; background: var(--gold); margin: 20px auto; }
+
+        /* Оюндардын сеткасы */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        /* Карточка стили */
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1); }
+
+        .card-img { height: 350px; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: 0.5s; }
+        .card:hover .card-img img { filter: brightness(1); }
+
+        .card-content { padding: 30px; }
+        .card-content h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; }
+        .card-content p { color: #ccc; margin-bottom: 20px; }
+
+        /* Жашыруун маалымат бөлүгү */
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            background: rgba(0,0,0,0.3);
+            border-radius: 0 0 15px 15px;
+        }
+        .details-inner { padding: 30px; border-top: 1px solid rgba(212, 175, 55, 0.3); }
+        .details h4 { color: var(--light-gold); margin: 15px 0 5px; font-size: 1.1rem; }
+        .details p { font-size: 0.95rem; margin-bottom: 10px; color: #ddd; }
+
+        .btn-exp {
+            background: linear-gradient(45deg, var(--gold), #f9e295);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-exp:hover { letter-spacing: 2px; box-shadow: 0 0 20px var(--gold); }
+
+        /* Философия бөлүмү */
+        .info-strip {
+            background: var(--deep-red);
+            padding: 80px 10%;
+            text-align: center;
+            margin: 50px 0;
+            clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%);
+        }
+        .info-strip h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
+
+        footer {
+            padding: 80px 5%;
+            background: #000;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-ornament"></div>
+
+    <nav>
+        <div class="logo">УЛУУ МУРАС</div>
+        <div style="color: var(--gold); font-weight: 600;">КЫРГЫЗ ЭНЦИКЛОПЕДИЯСЫ</div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-box">
+            <h1>КӨЧМӨН РУХУ</h1>
+
+            <p>кылымдардан калган өчпөс мурас</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Улуттук Оюндардын Казынасы</h2>
+            <div class="gold-divider"></div>
+            <p style="max-width: 700px; margin: 0 auto; opacity: 0.7;">Бул жерде кыргыз элинин канына сиңген, жигиттикти, акылды жана шамдагайлыкты тарбиялаган эң негизги 6 оюн тууралуу толук маалымат берилет.</p>
+        </div>
+
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img"><img src="https://cdn-0.aki.kg/st_gallery/84/921684.8702403877a0c041a7c9542f83ec9af2.jpg" alt="Көк бөрү"></div>
+                <div class="card-content">
+                    <h3>КӨК БӨРҮ</h3>
+                    <p>Кыргыздын эң кадыр-барктуу жана эң катаал оюну. Бул эр жүрөктүүлүктүн чыныгы майданы.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Тарыхы:</h4>
+                        <p>Байыркы заманда малчылар короого кол салган карышкырды кууп жетип, аны союп, бири-биринен тартып алып машыгышкан. Бул кийинчерээк улуттук оюнга айланган.</p>
+                        <h4>Эрежеси:</h4>
+                        <p>Эки команда (ар бири 4-12 оюнчудан) ат үстүндө 35 кг салмактагы улактын муляжы үчүн күрөшөт. Максаты — улакты каршылашынын "Тай казанына" салуу.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Оюнчулардан темирдей нервди, атты башкаруудагы чеберчиликти жана командалык биримдикти талап кылат.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://sputnik.kg/img/07e7/08/1d/1078185912_0:0:2881:1620_2072x0_60_0_0_212f92c43ee26d25ba84a1e622b2a09d.jpg" alt="Тогуз коргоол"></div>
+                <div class="card-content">
+                    <h3>ТОГУЗ КОРГООЛ</h3>
+                    <p>Көчмөндөрдүн алгебрасы. Акыл-эс жана логикалык ой жүгүртүүнү өстүрүүчү уникалдуу оюн.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Тарыхы:</h4>
+                        <p>Миңдеген жылдар мурун малчылар бош убактысында жерди казып, таштар менен ойноп башташкан. ЮНЕСКОнун материалдык эмес маданий мурастарынын тизмесине кирген.</p>
+                        <h4>Эрежеси:</h4>
+                        <p>Оюн атайын тактада ойнолот. Ар бир оюнчунун 9 уясы жана бирден "казынасы" болот. Максаты — 162 коргоолдун ичинен 81ден көбүн жыйноо.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Бул оюн стратегиялык пландаштырууну жана математикалык ылдам эсептөөнү үйрөтөт.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://baylig.ru/wp-content/uploads/2021/03/IMG_3914.jpg" alt="Жамбы атуу"></div>
+                <div class="card-content">
+                    <h3>ЖАМБЫ АТУУ</h3>
+                    <p>Мергенчилик өнөрүнүн туу чокусу. Тулпардын үстүндө чаап бара жатып бутаны так мээлөө.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Тарыхы:</h4>
+                        <p>Байыркы кыргыздардын жоокердик машыгуусунун бир түрү. "Жамбы" — бул бийик мамыга илинген күмүш же алтын диск.</p>
+                        <h4>Эрежеси:</h4>
+                        <p>Оюнчу чаап бара жаткан аттын үстүндө туруп, жаа менен бийиктикте илинип турган жамбыны (бутаны) атып түшүрүшү керек.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Жигиттин көзүнүн курчтугун, колунун тактыгын жана ат үстүндө тең салмактуулукту сактоосун сынайт.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://nazarnews.org/media/news_images/2018/01/09/NazarNews_7a7350a1678c6343064e70e635b20afd.jpg" alt="Чүкө оюндары"></div>
+                <div class="card-content">
+                    <h3>ЧҮКӨ ОЮНДАРЫ</h3>
+                    <p>Балдардын жана жаштардын эң сүйүктүү оюну. Шамдагайлыктын жана тактыктын мектеби.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Түрлөрү:</h4>
+                        <p>Чүкө оюндарынын көптөгөн түрлөрү бар: "Хан Талапай", "Ордо", "Чүкө атышуу", "Үч тапан" ж.б.</p>
+                        <h4>Хан Талапай:</h4>
+                        <p>Чүкөлөр чачылат, "Хан" (түстүү чүкө) кимге тийсе, ал жеңүүчү болот. Бул оюн балдарды ылдамдыкка жана кунт коюуга үйрөтөт.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Чүкө ойноо колдун моторикасын өстүрөт, көздүн мээлөөсүн тактайт жана социалдык мамилелерди бекемдейт.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="https://www.kyrgyztil.taalimforum.kg/upload/images/kyz-kuumay.jpg" alt="Кыз куумай"></div>
+                <div class="card-content">
+                    <h3>КЫЗ КУУМАЙ</h3>
+                    <p>Көчмөн жашоосундагы эң көркөм жана романтикалуу оюн. Шамдагайлык жана сыймык.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Тарыхы:</h4>
+                        <p>Байыркы үйлөнүү каада-салтынын бир бөлүгү катары пайда болгон. Жигит өзүнүн татыктуу экенин ат үстүндө далилдеши керек болгон.</p>
+                        <h4>Эрежеси:</h4>
+                        <p>Кыз жигиттен 20 метр алдыда чаап баштайт. Жигит марага чейин кызды кууп жетип, анын бетинен өбүшү керек. Эгер жетпесе, кайра кайткан жолдо кыз жигитти камчы менен сабап кууп келет.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Бул оюн шамдагайлыкты, тулпардын ылдамдыгын жана кыз-жигиттин ортосундагы сый-урматты даңазалайт.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img"><img src="C:\Users\K-1\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\DF23BB63DBAD0584A9E7E996096527B92E8A1D0D\transfers\2026-10\746-91694.jpg.jpeg" alt="Эр эңиш"></div>
+                <div class="card-content">
+                    <h3>ЭР ЭҢИШ</h3>
+                    <p>Ат үстүндөгү балбандардын кармашы. Жигиттин жана тулпардын кайраты сыналган байыркы оюн.</p>
+                    <button class="btn-exp" onclick="toggleDetails(this)">Толук маалымат</button>
+                </div>
+                <div class="details">
+                    <div class="details-inner">
+                        <h4>Тарыхы:</h4>
+                        <p>Бул согуштук өнөрдөн келип чыккан оюн. Жоокерлер ат үстүндө каршылашын куралсыз эле оодарып түшүрүү үчүн машыгышкан.</p>
+                        <h4>Эрежеси:</h4>
+                        <p>Эки балбан ат үстүндө бири-биринин курун же колун кармап, аттан жерге оодарып түшүрүүгө аракет кылышат. Кимдин денеси жерге тийсе, ал утулат.</p>
+                        <h4>Мааниси:</h4>
+                        <p>Мында билектин күчү гана эмес, атты тизе менен башкаруу жана тең салмактуулукту сактоо чеберчилиги маанилүү.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="info-strip">
+        <h2>"Кыргыз оюну — эрдин намысы, элдин каны."</h2>
+        <p>Ата-бабалардан калган бул улуу мурастарды сактоо — биздин ыйык парзыбыз.</p>
+    </section>
+
+    <footer>
+        <h2 style="font-family: 'Playfair Display'; color: var(--gold); margin-bottom: 20px;">УЛУУ МУРАС ПОРТАЛЫ</h2>
+        <p style="opacity: 0.5;">© 2026 Кыргызстан. Бардык укуктар корголгон.</p>
+        <div style="margin-top: 30px; font-size: 2rem;">🇰🇬</div>
+    </footer>
+
+    <script>
+        function toggleDetails(btn) {
+            const details = btn.parentElement.nextElementSibling;
+            if (details.style.maxHeight) {
+                details.style.maxHeight = null;
+                btn.textContent = "Толук маалымат";
+            } else {
+                details.style.maxHeight = details.scrollHeight + "px";
+                btn.textContent = "Жабуу";
+            }
+        }
+    </script>
+</body>
+</html>

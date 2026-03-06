@@ -1,0 +1,92 @@
+.span{
+    color: blue;
+    padding-left: 20px;
+}
+.aa{
+    color: brown;
+    padding-left: 20px;
+}
+.col{
+    background-color: rgb(221, 245, 7);
+    font-size: 24px;
+    text-decoration: underline;
+    font-family: monospace;
+}
+.li{
+    font-weight: bold;
+}
+.lo{
+    text-transform: uppercase;
+}
+.lk{
+   box-shadow: 100px 100px 0px 0px rgba(34, 60, 80, 0.2);
+}   
+.ol{
+    letter-spacing: 9px;
+}
+.tr{
+    font-size: 100px;
+    font-weight: 200px;
+    color: rgb(255, 3, 3);
+    background-color: blue;
+    filter: brightness(2.3);
+}
+.sp{
+    color: blue;
+}
+.ui{
+    word-break: break-all;
+}
+.text{
+    background-color: aqua;
+    font-style: italic;
+}
+/* 14 */
+.syntax {
+    color: #d14;
+    font-family: monospace;
+}
+
+/* 15 */
+.tag {
+    color: white;
+    background: #333;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+/* 16 */
+.label-red {
+    background: red;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+/* 17 */
+.sale {
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* 18 */
+.pre {
+    background: #efefef;
+    padding: 10px;
+}
+
+/* 19 */
+.userWord {
+    color: blue;
+    font-weight: bold;
+}
+
+/* 20 */
+.multi .m1 { background: yellow; }
+.multi .m2 { font-weight: bold; }
+.multi .m3 { font-size: 22px; }
+.multi .m4 { text-decoration: underline; }
+.multi .m5 { font-family:monospace;}

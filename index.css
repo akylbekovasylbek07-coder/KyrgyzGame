@@ -1,0 +1,51 @@
+
+.relative{
+    position: relative;
+    top: 20px;
+    background: rgb(8, 255, 33);
+    width: 200px;
+    height: 200px;    
+}
+
+.container0{
+    position: absolute;
+    left: 30px;
+
+}
+.card{
+    position: relative;
+    background: black;
+    width: 900px;
+    height: 800px;
+}
+.box{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: red;
+    bottom: 10px;
+    right: 40px;
+}
+.decor__bloc{
+    background: blue;
+    color: antiquewhite ;
+    padding: 12px 18px;
+
+}
+.bloc_con{
+    position: relative;
+    background: aqua;
+    width: 40px;
+    height: 39px;
+    bottom: 0;
+    right: 0;   
+
+}
+.parent{
+    position: relative;
+}
+.child{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
